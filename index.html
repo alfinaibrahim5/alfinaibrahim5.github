@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rigora — Where Industry Finds Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1A2645; --navy-dark: #0e1830; --navy-mid: #1D3461;
+  --orange: #E07020; --orange-light: #f08535;
+  --teal: #1D6E6E; --teal-light: #2a9090;
+  --white: #fff; --off: #F4F5F8; --lgray: #E3E6EE; --mgray: #7A85A0;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito Sans',sans-serif;color:var(--navy);background:var(--white);overflow-x:hidden}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--navy-dark)}::-webkit-scrollbar-thumb{background:var(--orange)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(14,24,48,.97);backdrop-filter:blur(16px);height:68px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);transition:box-shadow .3s}
+nav.scrolled{box-shadow:0 4px 40px rgba(0,0,0,.4)}
+.nav-logo{text-decoration:none;display:flex;flex-direction:column;gap:1px}
+.nav-logo .brand{font-family:'Fjalla One',sans-serif;font-size:1.7rem;color:#fff;letter-spacing:.04em;line-height:1}
+.nav-logo .brand em{color:var(--orange);font-style:normal}
+.nav-logo .sub{font-size:.55rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--orange)}
+.nav-links{display:flex;gap:1.8rem;list-style:none;align-items:center}
+.nav-links a{color:rgba(255,255,255,.7);text-decoration:none;font-size:.76rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--orange)}
+.nav-cta{background:var(--orange)!important;color:#fff!important;padding:.44rem 1.1rem}
+.nav-cta:hover{background:var(--orange-light)!important}
+
+/* HERO */
+#hero{min-height:100vh;position:relative;display:flex;flex-direction:column;justify-content:center;padding:130px 5% 90px;overflow:hidden;background:var(--navy-dark)}
+.hbg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 65% 40%,rgba(224,112,32,.14) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 15% 75%,rgba(29,110,110,.18) 0%,transparent 55%),linear-gradient(150deg,#060e1f 0%,#0e1830 40%,#1a2645 100%)}
+.hlines{position:absolute;inset:0;overflow:hidden}
+.hlines::before{content:'';position:absolute;top:-20%;right:-10%;width:55%;height:140%;background:repeating-linear-gradient(100deg,transparent,transparent 48px,rgba(255,255,255,.025) 48px,rgba(255,255,255,.025) 49px)}
+.hi{position:relative;z-index:2;max-width:1220px;margin:0 auto;width:100%}
+.eyebrow{display:inline-flex;align-items:center;gap:.6rem;border:1px solid rgba(224,112,32,.35);background:rgba(224,112,32,.1);color:var(--orange);font-size:.66rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;padding:.38rem .9rem;margin-bottom:1.6rem;opacity:0;animation:fadeUp .6s ease .1s forwards}
+.hero-title{font-family:'Fjalla One',sans-serif;font-size:clamp(2.8rem,6.5vw,6rem);line-height:.95;color:#fff;text-transform:uppercase;letter-spacing:.01em;margin-bottom:1.4rem;opacity:0;animation:fadeUp .6s ease .3s forwards}
+.hero-title .acc{color:var(--orange)}
+.hero-title .dim{color:rgba(255,255,255,.32);display:block;font-size:.45em;letter-spacing:.06em;margin-top:.28em}
+.hero-desc{font-size:1rem;color:rgba(255,255,255,.52);max-width:540px;line-height:1.8;margin-bottom:2.5rem;opacity:0;animation:fadeUp .6s ease .5s forwards}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:4.5rem;opacity:0;animation:fadeUp .6s ease .7s forwards}
+.bp{background:var(--orange);color:#fff;font-family:'Fjalla One',sans-serif;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;padding:.9rem 2.2rem;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:background .2s,transform .2s,box-shadow .2s}
+.bp:hover{background:var(--orange-light);transform:translateY(-2px);box-shadow:0 10px 28px rgba(224,112,32,.4)}
+.bg{background:transparent;color:#fff;font-family:'Fjalla One',sans-serif;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;padding:.9rem 2.2rem;border:1px solid rgba(255,255,255,.25);cursor:pointer;text-decoration:none;display:inline-block;transition:border-color .2s,background .2s,transform .2s}
+.bg:hover{border-color:#fff;background:rgba(255,255,255,.08);transform:translateY(-2px)}
+.hero-kpis{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid rgba(255,255,255,.08);padding-top:2.5rem;opacity:0;animation:fadeUp .6s ease .9s forwards}
+.kpi{padding-right:2rem;border-right:1px solid rgba(255,255,255,.08)}
+.kpi:last-child{border-right:none}
+.kpi:not(:first-child){padding-left:2rem}
+.kv{font-family:'Fjalla One',sans-serif;font-size:2.4rem;color:var(--orange);line-height:1}
+.kl{font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-top:.25rem}
+
+/* TICKER */
+.ticker{background:var(--orange);padding:.85rem 0;overflow:hidden;white-space:nowrap}
+.tt{display:inline-flex;gap:3rem;animation:ticka 28s linear infinite}
+.ti{font-family:'Fjalla One',sans-serif;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:#fff;display:flex;align-items:center;gap:1rem}
+.ti::after{content:'◆';opacity:.4;font-size:.45rem}
+
+/* COMMON */
+section{padding:100px 5%}
+.wrap{max-width:1220px;margin:0 auto}
+.lbl{font-size:.66rem;font-weight:800;letter-spacing:.25em;text-transform:uppercase;color:var(--orange);margin-bottom:.7rem}
+.h2{font-family:'Fjalla One',sans-serif;font-size:clamp(2rem,3.8vw,3.2rem);text-transform:uppercase;line-height:.95;color:var(--navy);margin-bottom:.9rem}
+.h2w{color:#fff}
+.lead{font-size:1rem;color:var(--mgray);max-width:560px;line-height:1.75;margin-bottom:3.5rem}
+.leadw{color:rgba(255,255,255,.42)}
+
+/* ABOUT */
+#about{background:var(--off)}
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.abody{font-size:.93rem;color:var(--mgray);line-height:1.8}
+.abody p+p{margin-top:.9rem}
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--lgray);margin-top:2rem}
+.pillar{background:#fff;padding:1.4rem;border-top:3px solid transparent;transition:border-color .2s,transform .2s}
+.pillar:hover{border-top-color:var(--orange);transform:translateY(-3px)}
+.pt{font-size:.9rem;font-weight:800;color:var(--navy);margin-bottom:.35rem}
+.pd{font-size:.8rem;color:var(--mgray);line-height:1.6}
+.stat-blocks{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.sb{padding:2rem 1.5rem}
+.sb1{background:var(--navy)}.sb2{background:var(--orange)}.sb3{background:var(--teal)}.sb4{background:var(--navy-mid)}
+.sn{font-family:'Fjalla One',sans-serif;font-size:3rem;color:#fff;line-height:1}
+.sl{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:.3rem}
+.offices-mini{background:#fff;border:1px solid var(--lgray);padding:1.8rem;margin-top:1rem}
+.off-mini-lbl{font-size:.65rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);margin-bottom:.9rem}
+.off-mini-row{display:flex;gap:.8rem;align-items:center;font-size:.86rem;color:var(--navy);font-weight:600;padding:.35rem 0}
+.off-mini-row span.d{color:var(--mgray);font-weight:400}
+
+/* SERVICES OVERVIEW */
+#services-overview{background:var(--navy)}
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5px;background:rgba(255,255,255,.07)}
+.svc-card{background:rgba(255,255,255,.03);padding:2rem 1.6rem;cursor:pointer;border-top:3px solid transparent;transition:background .25s,border-color .25s;position:relative;overflow:hidden}
+.svc-card:hover{background:rgba(255,255,255,.08);border-top-color:var(--orange)}
+.svc-num{font-family:'Fjalla One',sans-serif;font-size:3.2rem;color:rgba(255,255,255,.05);line-height:1;margin-bottom:-.3rem}
+.svc-icon{font-size:1.5rem;margin-bottom:.7rem}
+.svc-name{font-family:'Fjalla One',sans-serif;font-size:1.05rem;text-transform:uppercase;color:#fff;line-height:1.1;margin-bottom:.5rem}
+.svc-hint{font-size:.78rem;color:rgba(255,255,255,.36);line-height:1.55}
+.svc-arr{position:absolute;bottom:1.4rem;right:1.4rem;color:var(--orange);font-size:.85rem;opacity:0;transition:opacity .2s,transform .2s}
+.svc-card:hover .svc-arr{opacity:1;transform:translateX(3px)}
+.svc-promo{background:rgba(224,112,32,.07);border-top:3px solid var(--orange);cursor:default}
+
+/* SERVICE DETAIL */
+.svc-detail{background:var(--off);padding:70px 5%;display:none}
+.svc-detail.active{display:block}
+.sdg{display:grid;grid-template-columns:1fr 1.1fr;gap:4rem;align-items:start;max-width:1220px;margin:0 auto}
+.sdl h3{font-family:'Fjalla One',sans-serif;font-size:2rem;text-transform:uppercase;color:var(--navy);margin-bottom:.4rem}
+.sdl .ssub{font-size:.75rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);margin-bottom:1.1rem}
+.sdl p{font-size:.9rem;color:var(--mgray);line-height:1.8;margin-bottom:.8rem}
+.sdlist{list-style:none;display:flex;flex-direction:column;gap:.4rem;margin-top:.8rem}
+.sdlist li{display:flex;align-items:center;gap:.7rem;font-size:.86rem;color:var(--navy);font-weight:600;padding:.55rem 0;border-bottom:1px solid var(--lgray)}
+.sdlist li::before{content:'';width:7px;height:7px;background:var(--orange);flex-shrink:0}
+.sdr{display:flex;flex-direction:column;gap:.9rem}
+.sdf{background:#fff;padding:1.3rem 1.4rem;border-left:3px solid var(--navy);transition:border-color .2s}
+.sdf:hover{border-left-color:var(--orange)}
+.sdf-t{font-weight:800;font-size:.88rem;color:var(--navy);margin-bottom:.25rem}
+.sdf-d{font-size:.8rem;color:var(--mgray);line-height:1.6}
+.dtags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
+.dtag{background:var(--navy);color:#fff;font-size:.7rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;padding:.32rem .75rem}
+
+/* FLUID PRODUCTS */
+#fluid{background:var(--white)}
+.ftabs{display:flex;gap:0;margin-bottom:3rem;border-bottom:2px solid var(--lgray)}
+.ftab{font-family:'Fjalla One',sans-serif;font-size:.92rem;letter-spacing:.07em;text-transform:uppercase;padding:.8rem 1.5rem;border:none;background:none;color:var(--mgray);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:color .2s}
+.ftab.active{color:var(--navy);border-bottom-color:var(--orange)}
+.ftab:hover{color:var(--navy)}
+.fpanel{display:none}
+.fpanel.active{display:block}
+.fpg{display:grid;grid-template-columns:1fr 1.3fr;gap:4rem;align-items:start}
+.fpdesc{font-size:.91rem;color:var(--mgray);line-height:1.8;margin-bottom:1.4rem}
+.fslbl{font-size:.66rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--mgray);margin-bottom:.7rem}
+.ftg{display:grid;grid-template-columns:1fr 1fr;gap:.35rem;margin-bottom:1.4rem}
+.ft{display:flex;align-items:center;gap:.55rem;font-size:.83rem;font-weight:600;color:var(--navy);padding:.5rem 0;border-bottom:1px solid var(--lgray)}
+.ft::before{content:'';width:6px;height:6px;background:var(--orange);flex-shrink:0}
+.fspecs{background:var(--navy);color:#fff;padding:2rem}
+.fsl{font-size:.66rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);margin-bottom:1.1rem}
+.fsr{display:flex;justify-content:space-between;align-items:center;padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:.83rem}
+.fsr:last-of-type{border-bottom:none}
+.fsk{color:rgba(255,255,255,.48)}
+.fsv{color:#fff;font-weight:700}
+.fstd{margin-top:1.1rem;padding:.85rem 1.1rem;background:rgba(224,112,32,.12);border-left:3px solid var(--orange);font-size:.78rem;color:rgba(255,255,255,.62)}
+.fstd strong{color:var(--orange)}
+
+/* INDUSTRIES */
+#industries{background:var(--off)}
+.ig{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.ic{background:#fff;padding:1.8rem;border-top:3px solid transparent;transition:border-color .2s,transform .2s,box-shadow .2s}
+.ic:hover{border-top-color:var(--orange);transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.08)}
+.ii{font-size:1.5rem;margin-bottom:.9rem}
+.in{font-family:'Fjalla One',sans-serif;font-size:1.05rem;text-transform:uppercase;color:var(--navy);margin-bottom:.45rem}
+.id{font-size:.8rem;color:var(--mgray);line-height:1.65}
+
+/* WORKFORCE */
+#workforce{background:var(--white)}
+.wfg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.wfc{overflow:hidden}
+.wfh{padding:1.1rem 1.4rem;font-family:'Fjalla One',sans-serif;font-size:1.05rem;text-transform:uppercase;color:#fff;letter-spacing:.04em}
+.wfh.m{background:var(--navy)}.wfh.t{background:var(--orange)}.wfh.s{background:var(--teal)}
+.wfb{background:#fff;border:1px solid var(--lgray);border-top:none}
+.wfi{display:flex;align-items:center;gap:.7rem;padding:.82rem 1.4rem;border-bottom:1px solid var(--lgray);font-size:.86rem;font-weight:600;color:var(--navy)}
+.wfi:last-child{border-bottom:none}
+.wd{width:7px;height:7px;flex-shrink:0}
+.wd1{background:var(--navy)}.wd2{background:var(--orange)}.wd3{background:var(--teal)}
+
+/* QUALITY */
+#quality{background:var(--navy)}
+.qg{display:grid;grid-template-columns:1fr 1fr;gap:4rem}
+.qlbl2{font-size:.63rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:.9rem}
+.stds{display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.06)}
+.sr{display:grid;grid-template-columns:66px 1fr;background:rgba(255,255,255,.03);overflow:hidden;transition:background .2s}
+.sr:hover{background:rgba(255,255,255,.08)}
+.sc{background:var(--orange);display:flex;align-items:center;justify-content:center;font-family:'Fjalla One',sans-serif;font-size:.95rem;color:#fff}
+.si{padding:.85rem 1.1rem}
+.sn2{font-size:.83rem;font-weight:700;color:#fff;margin-bottom:.12rem}
+.ss{font-size:.73rem;color:rgba(255,255,255,.38)}
+.commits{display:flex;flex-direction:column;gap:.9rem}
+.cm{display:flex;gap:1rem;align-items:flex-start;padding:1.1rem 1.3rem;background:rgba(255,255,255,.04);border-left:3px solid transparent;transition:border-color .2s,background .2s}
+.cm:hover{border-left-color:var(--teal);background:rgba(255,255,255,.07)}
+.cd{width:8px;height:8px;background:var(--teal);border-radius:50%;flex-shrink:0;margin-top:4px}
+.ct{font-size:.86rem;font-weight:800;color:#fff;margin-bottom:.18rem}
+.cx{font-size:.76rem;color:rgba(255,255,255,.38);line-height:1.55}
+
+/* GLOBAL */
+#global{background:var(--off)}
+.ofg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:1.5rem}
+.ofc{background:#fff;border:1px solid var(--lgray);overflow:hidden;transition:transform .2s,box-shadow .2s}
+.ofc:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.08)}
+.ofh{padding:1.3rem;display:flex;align-items:center;gap:.75rem}
+.ofh.ksa{background:var(--navy)}.ofh.ind{background:var(--teal)}.ofh.uae{background:var(--orange)}
+.offl{font-size:1.35rem}
+.ofn{font-family:'Fjalla One',sans-serif;font-size:1rem;text-transform:uppercase;color:#fff;letter-spacing:.04em}
+.ofb{padding:1.3rem}
+.ofa{font-size:.84rem;color:var(--mgray);margin-bottom:.65rem;line-height:1.5}
+.ofr{font-size:.65rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--orange)}
+.also{background:#fff;border:1px solid var(--lgray);padding:1.1rem 1.8rem;text-align:center;font-size:.84rem;color:var(--mgray)}
+.also strong{color:var(--navy)}
+
+/* CONTACT */
+#contact{background:var(--navy-dark);padding-bottom:0}
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:5rem;padding-bottom:80px}
+.ci{display:flex;flex-direction:column;gap:1.3rem;margin-top:.8rem}
+.cit{display:flex;gap:1rem;align-items:flex-start}
+.cion{width:37px;height:37px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.cl{font-size:.6rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:.22rem}
+.cv{font-size:.86rem;color:rgba(255,255,255,.72);line-height:1.6}
+.cv a{color:rgba(255,255,255,.72);text-decoration:none}
+.cv a:hover{color:var(--orange)}
+.cf{display:flex;flex-direction:column;gap:.85rem}
+.cr{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+.cgrp{display:flex;flex-direction:column;gap:.32rem}
+.cgrp label{font-size:.62rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.32)}
+.cgrp input,.cgrp textarea,.cgrp select{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#fff;padding:.72rem .9rem;font-family:'Nunito Sans',sans-serif;font-size:.86rem;outline:none;transition:border-color .2s,background .2s;width:100%}
+.cgrp input:focus,.cgrp textarea:focus,.cgrp select:focus{border-color:var(--orange);background:rgba(255,255,255,.08)}
+.cgrp input::placeholder,.cgrp textarea::placeholder{color:rgba(255,255,255,.18)}
+.cgrp select option{background:var(--navy-dark)}
+.cgrp textarea{resize:vertical;min-height:90px}
+.cnote{font-size:.7rem;color:rgba(255,255,255,.18);text-align:center;margin-top:.2rem}
+
+/* FOOTER */
+footer{background:#060d1b;padding:2rem 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.fb{font-family:'Fjalla One',sans-serif;font-size:1.1rem;color:#fff;letter-spacing:.05em}
+.fb em{color:var(--orange);font-style:normal}
+.fc{font-size:.72rem;color:rgba(255,255,255,.22)}
+.fl{display:flex;gap:1.4rem}
+.fl a{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.28);text-decoration:none;transition:color .2s}
+.fl a:hover{color:var(--orange)}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes ticka{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.fi{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.fi.vis{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .hero-kpis{grid-template-columns:repeat(3,1fr)}
+  .kpi:nth-child(3){border-right:none}
+  .ag,.cg,.qg,.fpg,.sdg{grid-template-columns:1fr;gap:2.5rem}
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .ig,.ofg,.wfg{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+}
+@media(max-width:600px){
+  .hero-kpis{grid-template-columns:1fr 1fr}
+  .kpi:nth-child(5){display:none}
+  .svc-grid,.ig,.ofg,.wfg{grid-template-columns:1fr}
+  .pillars,.ftg,.cr,.stat-blocks{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nav-logo" href="#">
+    <div class="brand">RIG<em>O</em>RA</div>
+    <div class="sub">Where Industry Finds Solutions</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services-overview">Services</a></li>
+    <li><a href="#fluid">Products</a></li>
+    <li><a href="#industries">Industries</a></li>
+    <li><a href="#quality">Quality</a></li>
+    <li><a href="#global">Global</a></li>
+    <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hbg"></div>
+  <div class="hlines"></div>
+  <div class="hi">
+    <div class="eyebrow">Integrated Industrial Solutions Provider</div>
+    <h1 class="hero-title">
+      Where Industry<br><span class="acc">Finds Solutions</span>
+      <span class="dim">Contracting · Maintenance · Equipment · Technical Services · Trading</span>
+    </h1>
+    <p class="hero-desc">Delivering excellence across 7+ service lines in 3 countries — from heavy equipment rental and steel fabrication to precision fluid management systems. Built on expertise, reliability, innovation, and safety.</p>
+    <div class="hero-btns">
+      <a href="#services-overview" class="bp">Explore Our Services</a>
+      <a href="#contact" class="bg">Request a Quote</a>
+    </div>
+    <div class="hero-kpis">
+      <div class="kpi"><div class="kv">7+</div><div class="kl">Service Lines</div></div>
+      <div class="kpi"><div class="kv">3</div><div class="kl">Countries</div></div>
+      <div class="kpi"><div class="kv">24/7</div><div class="kl">Support</div></div>
+      <div class="kpi"><div class="kv">1,000+</div><div class="kl">Repeat Clients</div></div>
+      <div class="kpi"><div class="kv">500+</div><div class="kl">Projects Done</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="tt">
+    <span class="ti">Heavy Equipment Rental</span><span class="ti">Technical Support Services</span><span class="ti">Construction &amp; Maintenance</span><span class="ti">Plant Maintenance</span><span class="ti">Industrial &amp; Material Trading</span><span class="ti">Steel Structure Fabrication</span><span class="ti">Pumps &amp; Valves Supply</span><span class="ti">24/7 Support</span><span class="ti">API · ANSI · ASME · BS · DIN · EN</span>
+    <span class="ti">Heavy Equipment Rental</span><span class="ti">Technical Support Services</span><span class="ti">Construction &amp; Maintenance</span><span class="ti">Plant Maintenance</span><span class="ti">Industrial &amp; Material Trading</span><span class="ti">Steel Structure Fabrication</span><span class="ti">Pumps &amp; Valves Supply</span><span class="ti">24/7 Support</span><span class="ti">API · ANSI · ASME · BS · DIN · EN</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="ag">
+      <div class="fi">
+        <div class="lbl">Who We Are</div>
+        <h2 class="h2">Results-Driven Industrial Excellence</h2>
+        <div class="abody">
+          <p>Rigora is a results-driven company delivering integrated contracting, industrial, and technical solutions across diverse sectors.</p>
+          <p>Built on a foundation of expertise, reliability, and innovation, we provide high-quality services designed to meet the evolving demands of modern industries.</p>
+          <p>With a skilled workforce, advanced resources, and a commitment to safety and precision, Rigora ensures every project is executed efficiently, on time, and to the highest standards.</p>
+          <p>Our focus is not only on delivering services but on building long-term partnerships based on trust, performance, and value.</p>
+        </div>
+        <div class="pillars">
+          <div class="pillar"><div class="pt">⚙️ Expertise</div><div class="pd">Skilled teams with proven technical know-how across all disciplines.</div></div>
+          <div class="pillar"><div class="pt">✅ Reliability</div><div class="pd">Consistent delivery, on-time execution, and accountability on every project.</div></div>
+          <div class="pillar"><div class="pt">💡 Innovation</div><div class="pd">Modern methods and technology-driven solutions for industry.</div></div>
+          <div class="pillar"><div class="pt">🛡️ Safety</div><div class="pd">Unwavering commitment to safety standards on every project we undertake.</div></div>
+        </div>
+      </div>
+      <div class="fi" style="transition-delay:.15s">
+        <div class="stat-blocks">
+          <div class="sb sb1"><div class="sn">500+</div><div class="sl">Projects Delivered</div></div>
+          <div class="sb sb2"><div class="sn">37+</div><div class="sl">Years of Expertise</div></div>
+          <div class="sb sb3"><div class="sn">1,000+</div><div class="sl">Repeat Clients</div></div>
+          <div class="sb sb4"><div class="sn">10K+</div><div class="sl">Product SKUs</div></div>
+        </div>
+        <div class="offices-mini">
+          <div class="off-mini-lbl">Our Offices</div>
+          <div class="off-mini-row">🇸🇦 Al Fayha, Fanateer &nbsp;<span class="d">— Saudi Arabia (HQ)</span></div>
+          <div class="off-mini-row">🇮🇳 Deshai Towers, Trivandrum &nbsp;<span class="d">— India (Manufacturing)</span></div>
+          <div class="off-mini-row">🇦🇪 Green House, Bur Dubai &nbsp;<span class="d">— UAE (Sales)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES OVERVIEW -->
+<section id="services-overview">
+  <div class="wrap">
+    <div class="lbl">Our Services</div>
+    <h2 class="h2 h2w">7 Specialized Service Lines</h2>
+    <p class="lead leadw">Powering your operations across contracting, maintenance, equipment and technical services. Click any service to learn more.</p>
+    <div class="svc-grid fi">
+      <div class="svc-card" onclick="showDetail('heavy')"><div class="svc-num">01</div><div class="svc-icon">🏗️</div><div class="svc-name">Heavy Equipment Rental</div><div class="svc-hint">Mobile cranes 50T–1200T, crawler cranes, earth moving, forklifts, trucks &amp; trailers</div><div class="svc-arr">→</div></div>
+      <div class="svc-card" onclick="showDetail('technical')"><div class="svc-num">02</div><div class="svc-icon">👷</div><div class="svc-name">Technical Support</div><div class="svc-hint">Skilled and reliable workforce — management, technical staff, and support crew</div><div class="svc-arr">→</div></div>
+      <div class="svc-card" onclick="showDetail('construction')"><div class="svc-num">03</div><div class="svc-icon">🏭</div><div class="svc-name">Construction &amp; Maintenance</div><div class="svc-hint">Full-cycle industrial and commercial project delivery — Civil, Mechanical, Electrical, HVAC</div><div class="svc-arr">→</div></div>
+      <div class="svc-card" onclick="showDetail('plant')"><div class="svc-num">04</div><div class="svc-icon">⚙️</div><div class="svc-name">Plant Maintenance</div><div class="svc-hint">Maintenance and shutdown services — keeping your plant at peak performance</div><div class="svc-arr">→</div></div>
+      <div class="svc-card" onclick="showDetail('trading')"><div class="svc-num">05</div><div class="svc-icon">📦</div><div class="svc-name">Industrial &amp; Material Trading</div><div class="svc-hint">Supplying quality materials to heavy construction sites including Aramco projects</div><div class="svc-arr">→</div></div>
+      <div class="svc-card" onclick="showDetail('steel')"><div class="svc-num">06</div><div class="svc-icon">🔩</div><div class="svc-name">Steel Structure Fabrication</div><div class="svc-hint">Custom steel solutions built with precision — design, fabrication and QA/QC</div><div class="svc-arr">→</div></div>
+      <div class="svc-card" onclick="showDetail('pumps')"><div class="svc-num">07</div><div class="svc-icon">💧</div><div class="svc-name">Pumps &amp; Valves Supply</div><div class="svc-hint">High-performance fluid control solutions for industrial and marine applications</div><div class="svc-arr">→</div></div>
+      <div class="svc-card svc-promo" style="cursor:default"><div class="svc-icon">📞</div><div class="svc-name">24/7 Support</div><div class="svc-hint">All service lines backed by round-the-clock technical support and rapid response teams across 3 countries.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE DETAIL PANELS -->
+<div id="detail-heavy" class="svc-detail">
+  <div class="sdg">
+    <div class="sdl"><div class="lbl">Service 01</div><h3>Heavy Equipment Rental Services</h3><div class="ssub">Comprehensive fleet for every project scale</div><p>Providing top-tier heavy equipment rental services, we offer a comprehensive range of machinery backed by full-fledged service support in all scenarios, with a committed team of skilled technicians dedicated to ensuring efficient and safe operations on every project.</p><ul class="sdlist"><li>Mobile Crane (50T – 1200T)</li><li>Crawler Cranes</li><li>Earth Moving Equipment</li><li>Manlift / Forklift</li><li>Trucks / Trailers</li><li>Vehicle Rental</li><li>Machineries</li></ul></div>
+    <div class="sdr"><div class="sdf"><div class="sdf-t">Well-Maintained Fleet</div><div class="sdf-d">Regular servicing and inspections ensure peak performance on every deployment.</div></div><div class="sdf"><div class="sdf-t">Skilled Technicians</div><div class="sdf-d">Expert operators dedicated to safe and efficient operations across all project types.</div></div><div class="sdf"><div class="sdf-t">Full-Service Support</div><div class="sdf-d">24/7 technical support across all project scenarios — from mobilization to completion.</div></div></div>
+  </div>
+</div>
+
+<div id="detail-technical" class="svc-detail">
+  <div class="sdg">
+    <div class="sdl"><div class="lbl">Service 02</div><h3>Technical Support Services</h3><div class="ssub">Skilled workforce for seamless project execution</div><p>Our Technical Support Service Department ensures seamless project execution with a reliable mix of skilled and unskilled workforce — covering management, technical operations, and site support roles.</p><div class="dtags"><span class="dtag">Project Managers</span><span class="dtag">Engineers</span><span class="dtag">QA / QC</span><span class="dtag">Planning Crew</span><span class="dtag">Technicians</span><span class="dtag">Welders</span><span class="dtag">Certified Operators</span><span class="dtag">General Labor</span><span class="dtag">Material Handlers</span></div></div>
+    <div class="sdr"><div class="sdf"><div class="sdf-t">Management Tier</div><div class="sdf-d">Project Managers, Engineers, QA/QC and Planning Crew for complete project oversight.</div></div><div class="sdf"><div class="sdf-t">Technical Tier</div><div class="sdf-d">Technicians, Welders, and Certified Operators for on-the-ground execution.</div></div><div class="sdf"><div class="sdf-t">Support Tier</div><div class="sdf-d">General Labor, Construction Helpers, Material Handlers, and Site Cleaners.</div></div></div>
+  </div>
+</div>
+
+<div id="detail-construction" class="svc-detail">
+  <div class="sdg">
+    <div class="sdl"><div class="lbl">Service 03</div><h3>Construction &amp; Maintenance Services</h3><div class="ssub">Full-cycle industrial and commercial project delivery</div><p>Our Construction and Plant Maintenance Department delivers top-tier services, ensuring your projects are built and maintained to the highest standards. From initial planning to final execution, we specialize in industrial and commercial construction, as well as comprehensive plant maintenance.</p><p>We minimize downtime, maximize productivity, and deliver results efficiently and safely.</p><div class="dtags"><span class="dtag">Civil</span><span class="dtag">Mechanical</span><span class="dtag">Electrical</span><span class="dtag">HVAC</span></div></div>
+    <div class="sdr"><div class="sdf"><div class="sdf-t">Industrial Construction</div><div class="sdf-d">Turnkey solutions for industrial and commercial builds from planning through execution.</div></div><div class="sdf"><div class="sdf-t">Plant Maintenance</div><div class="sdf-d">Preventive and corrective maintenance to keep operations running at peak efficiency.</div></div><div class="sdf"><div class="sdf-t">Minimize Downtime</div><div class="sdf-d">Rapid response and systematic processes to reduce operational interruptions.</div></div></div>
+  </div>
+</div>
+
+<div id="detail-plant" class="svc-detail">
+  <div class="sdg">
+    <div class="sdl"><div class="lbl">Service 04</div><h3>Plant Maintenance Services</h3><div class="ssub">Keeping your plant at peak performance</div><p>Expert maintenance and shutdown services ensuring your plant operates efficiently, reliably, and safely — minimizing downtime and maximizing productivity.</p><ul class="sdlist"><li>Equipment inspections and diagnostics</li><li>Preventive maintenance programs</li><li>Mechanical and electrical repairs</li><li>System upgrades and optimization</li></ul></div>
+    <div class="sdr"><div class="sdf"><div class="sdf-t">Shutdown Works</div><div class="sdf-d">Comprehensive system inspections, machinery overhauls and rebuilds, safety compliance checks and audits, and major repairs and replacements.</div></div><div class="sdf"><div class="sdf-t">Rapid Response</div><div class="sdf-d">Systematic processes and dedicated teams to minimize operational interruption time.</div></div><div class="sdf"><div class="sdf-t">Compliance &amp; Safety</div><div class="sdf-d">All maintenance activities carried out to the strictest safety standards and regulatory requirements.</div></div></div>
+  </div>
+</div>
+
+<div id="detail-trading" class="svc-detail">
+  <div class="sdg">
+    <div class="sdl"><div class="lbl">Service 05</div><h3>Industrial &amp; Material Trading</h3><div class="ssub">Supplying quality materials to heavy construction sites</div><p>Our Materials Trading division supplies high-quality materials and equipment directly to heavy construction sites, including Aramco projects. With a strong supplier network, we ensure timely delivery, competitive pricing, and adherence to strict industry standards.</p><div class="dtags"><span class="dtag">Timely Delivery</span><span class="dtag">Competitive Pricing</span><span class="dtag">Industry Standards</span></div></div>
+    <div class="sdr"><div class="sdf"><div class="sdf-t">Civil Materials</div><div class="sdf-d">Structural steel, cement, aggregates, formwork.</div></div><div class="sdf"><div class="sdf-t">Mechanical</div><div class="sdf-d">Pumps, valves, rubber hoses, mechanical seals.</div></div><div class="sdf"><div class="sdf-t">Electrical</div><div class="sdf-d">Cables, panels, switchgear, instrumentation.</div></div><div class="sdf"><div class="sdf-t">Hand Tools &amp; Machinery</div><div class="sdf-d">All kinds of hand tools and power machineries.</div></div><div class="sdf"><div class="sdf-t">General Trading</div><div class="sdf-d">Industrial consumables and site essentials.</div></div></div>
+  </div>
+</div>
+
+<div id="detail-steel" class="svc-detail">
+  <div class="sdg">
+    <div class="sdl"><div class="lbl">Service 06</div><h3>Steel Structure Fabrication</h3><div class="ssub">Custom steel solutions built with precision</div><p>We lead the way in fabricating robust steel structures — delivering customized solutions that meet the diverse needs of various industries with unmatched expertise.</p><ul class="sdlist"><li>Structural design and engineering</li><li>Certified welding to international standards</li><li>Rigorous QA/QC at every stage</li><li>On-time delivery and logistics</li><li>Tailored solutions per specification</li></ul></div>
+    <div class="sdr"><div class="sdf"><div class="sdf-t">Design &amp; Engineering</div><div class="sdf-d">Precision engineering from concept through detailed design documentation and structural analysis.</div></div><div class="sdf"><div class="sdf-t">Fabrication &amp; Welding</div><div class="sdf-d">State-of-the-art fabrication with certified welders meeting international weld quality standards.</div></div><div class="sdf"><div class="sdf-t">Quality Control</div><div class="sdf-d">Rigorous QA/QC protocols applied at every stage to ensure structural integrity and compliance.</div></div></div>
+  </div>
+</div>
+
+<div id="detail-pumps" class="svc-detail">
+  <div class="sdg">
+    <div class="sdl"><div class="lbl">Service 07</div><h3>Industrial Pumps &amp; Valves Supply</h3><div class="ssub">High-performance fluid control solutions</div><p>Empowering industries with high-performance pumps and valves. We specialize in durable, precision-engineered solutions for industrial and marine applications ensuring seamless fluid control, efficiency, and reliability — even in the harshest conditions.</p><ul class="sdlist"><li>Industrial &amp; marine-grade pumps</li><li>Valves — gate, ball, butterfly, check, relief</li><li>Mechanical seals for rotating equipment</li><li>LPG cylinder filling systems</li></ul></div>
+    <div class="sdr"><div class="sdf"><div class="sdf-t">Marine-Grade Pumps</div><div class="sdf-d">Corrosion-resistant, built for harsh saltwater and marine environments.</div></div><div class="sdf"><div class="sdf-t">Energy-Efficient</div><div class="sdf-d">Optimized for long service life and significant operational cost savings.</div></div><div class="sdf"><div class="sdf-t">24/7 Support &amp; Service</div><div class="sdf-d">Dedicated team ensuring minimal downtime with rapid troubleshooting.</div></div><div class="sdf"><div class="sdf-t">Trusted by Industry</div><div class="sdf-d">Proven track record with marine and heavy industrial sector clients worldwide.</div></div></div>
+  </div>
+</div>
+
+<!-- FLUID MANAGEMENT PRODUCTS -->
+<section id="fluid">
+  <div class="wrap">
+    <div class="lbl">Product Range</div>
+    <h2 class="h2">Fluid Management Solutions</h2>
+    <p class="lead">10,000+ SKUs across valves, pumps, mechanical seals and LPG — precision-engineered for the world's most demanding applications.</p>
+    <div class="ftabs">
+      <button class="ftab active" onclick="showFTab('valves',this)">Valves</button>
+      <button class="ftab" onclick="showFTab('pumps2',this)">Pumps</button>
+      <button class="ftab" onclick="showFTab('seals',this)">Mechanical Seals</button>
+      <button class="ftab" onclick="showFTab('lpg',this)">LPG Solutions</button>
+    </div>
+    <div id="valves" class="fpanel active"><div class="fpg"><div><h3 style="font-family:'Fjalla One',sans-serif;font-size:2rem;text-transform:uppercase;color:var(--navy);margin-bottom:.8rem;">Industrial Valves</h3><p class="fpdesc">Gate, Globe, Ball, Check, Butterfly, Relief, Solenoid &amp; Strainers. Sizes from ½" to 72". Pressures up to Class 2500.</p><div class="fslbl">Types Available</div><div class="ftg"><div class="ft">Gate / Sluice Valves</div><div class="ft">Globe Valves</div><div class="ft">Ball Valves</div><div class="ft">Check / Non-return Valves</div><div class="ft">Butterfly Valves</div><div class="ft">Pressure Relief Valves</div><div class="ft">Solenoid Valves</div><div class="ft">Strainers</div></div><a href="#contact" class="bp" style="margin-top:1.4rem;display:inline-block;">Request Quote</a></div><div class="fspecs"><div class="fsl">Specifications</div><div class="fsr"><span class="fsk">Size Range</span><span class="fsv">½" to 72"</span></div><div class="fsr"><span class="fsk">Pressure Class</span><span class="fsv">Up to Class 2500</span></div><div class="fsr"><span class="fsk">Materials</span><span class="fsv">SS, Carbon Steel, Cast Iron, Bronze, Alloys</span></div><div class="fsr"><span class="fsk">End Connection</span><span class="fsv">Flanged, BW, SW, NPT</span></div><div class="fsr"><span class="fsk">Body Material</span><span class="fsv">WCB, CF8M, LCC, WC6</span></div><div class="fstd"><strong>Standards:</strong> API · ANSI · ASME · BS · DIN · EN — Full traceability for audits &amp; tenders</div></div></div></div>
+    <div id="pumps2" class="fpanel"><div class="fpg"><div><h3 style="font-family:'Fjalla One',sans-serif;font-size:2rem;text-transform:uppercase;color:var(--navy);margin-bottom:.8rem;">Industrial Pumps</h3><p class="fpdesc">Centrifugal, Positive Displacement &amp; Submersible pumps engineered for maximum uptime. Up to 35,000 m³/hr capacity.</p><div class="fslbl">Categories</div><div class="ftg"><div class="ft">Centrifugal</div><div class="ft">Positive Displacement</div><div class="ft">Submersible</div><div class="ft">Fire Fighting</div><div class="ft">Chemical</div><div class="ft">Multistage</div></div><a href="#contact" class="bp" style="margin-top:1.4rem;display:inline-block;">Request Quote</a></div><div class="fspecs"><div class="fsl">Performance Data</div><div class="fsr"><span class="fsk">Max Flow Capacity</span><span class="fsv">35,000 m³/hr</span></div><div class="fsr"><span class="fsk">Max Pump Head</span><span class="fsv">850 MLC</span></div><div class="fsr"><span class="fsk">Max Diff. Pressure</span><span class="fsv">200 kg/cm²</span></div><div class="fsr"><span class="fsk">Drive Type</span><span class="fsv">Electric, Diesel, Turbine</span></div><div class="fsr"><span class="fsk">Applications</span><span class="fsv">Water, Oil, Chemical, Fire, Marine</span></div><div class="fstd"><strong>Standards:</strong> API 610 · ISO 5199 · ASME — Engineered for maximum uptime</div></div></div></div>
+    <div id="seals" class="fpanel"><div class="fpg"><div><h3 style="font-family:'Fjalla One',sans-serif;font-size:2rem;text-transform:uppercase;color:var(--navy);margin-bottom:.8rem;">Mechanical Seals</h3><p class="fpdesc">Superior sealing for pumps, compressors &amp; rotating equipment. Silicon Carbide, Tungsten Carbide, PTFE, EPDM &amp; FKM. Minimal leakage guaranteed.</p><div class="fslbl">Face Materials</div><div class="ftg"><div class="ft">Silicon Carbide</div><div class="ft">Tungsten Carbide</div><div class="ft">Carbon Graphite</div><div class="ft">Alumina Ceramic</div><div class="ft">Stellite Faces</div><div class="ft">PTFE Options</div></div><a href="#contact" class="bp" style="margin-top:1.4rem;display:inline-block;">Request Quote</a></div><div class="fspecs"><div class="fsl">Elastomer Options</div><div class="fsr"><span class="fsk">PTFE</span><span class="fsv">Chemical resistance</span></div><div class="fsr"><span class="fsk">EPDM</span><span class="fsv">Water &amp; steam service</span></div><div class="fsr"><span class="fsk">FKM</span><span class="fsv">High temp &amp; aggressive fluids</span></div><div class="fsr"><span class="fsk">Aflas</span><span class="fsv">Aggressive solvents &amp; acids</span></div><div class="fsr"><span class="fsk">Equipment</span><span class="fsv">Pumps, Compressors, Mixers</span></div><div class="fstd"><strong>Standards:</strong> API · ANSI · ASME · BS · DIN · EN</div></div></div></div>
+    <div id="lpg" class="fpanel"><div class="fpg"><div><h3 style="font-family:'Fjalla One',sans-serif;font-size:2rem;text-transform:uppercase;color:var(--navy);margin-bottom:.8rem;">LPG Solutions</h3><p class="fpdesc">Complete LPG cylinder filling equipment &amp; systems. Designed for safety-critical gas handling environments. Full system solutions from individual components to complete turnkey installations.</p><div class="ftg"><div class="ft">Cylinder Filling Systems</div><div class="ft">Safety-Critical Design</div><div class="ft">Gas Handling Equipment</div><div class="ft">Full System Solutions</div></div><a href="#contact" class="bp" style="margin-top:1.4rem;display:inline-block;">Request Quote</a></div><div class="fspecs"><div class="fsl">Key Features</div><div class="fsr"><span class="fsk">Application</span><span class="fsv">Safety-critical gas handling</span></div><div class="fsr"><span class="fsk">Scope</span><span class="fsv">Components to turnkey</span></div><div class="fsr"><span class="fsk">Cylinders</span><span class="fsv">All standard sizes</span></div><div class="fsr"><span class="fsk">After-Sales</span><span class="fsv">Full commissioning &amp; support</span></div><div class="fstd"><strong>Safety First:</strong> Engineered to the highest gas safety standards</div></div></div></div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section id="industries">
+  <div class="wrap">
+    <div class="lbl">Markets Served</div>
+    <h2 class="h2">Industries We Serve</h2>
+    <p class="lead">Trusted across the most demanding industrial sectors worldwide.</p>
+    <div class="ig">
+      <div class="ic fi"><div class="ii">⛽</div><div class="in">Oil &amp; Gas</div><div class="id">Wellhead control valves, high-pressure pumps &amp; seals for upstream, midstream and downstream operations.</div></div>
+      <div class="ic fi" style="transition-delay:.08s"><div class="ii">🏭</div><div class="in">Petrochemicals</div><div class="id">Corrosion-resistant alloy valves &amp; PVDF pumps for aggressive chemical processes and refinery applications.</div></div>
+      <div class="ic fi" style="transition-delay:.16s"><div class="ii">⚡</div><div class="in">Power Generation</div><div class="id">Boiler feed pumps, cooling water valves, and high-integrity seals for thermal and power station operations.</div></div>
+      <div class="ic fi" style="transition-delay:.08s"><div class="ii">⚓</div><div class="in">Marine</div><div class="id">Ballast, bilge &amp; fuel transfer pumps. Seawater-resistant bronze/SS valves for offshore and vessel use.</div></div>
+      <div class="ic fi" style="transition-delay:.16s"><div class="ii">💊</div><div class="in">Pharmaceuticals</div><div class="id">Hygienic SS pumps and seals for clean-room and sterile processing with highest hygiene compliance.</div></div>
+      <div class="ic fi" style="transition-delay:.24s"><div class="ii">🏗️</div><div class="in">Heavy Construction</div><div class="id">Equipment rental, steel fabrication, material supply and skilled workforce for large-scale construction projects.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORKFORCE -->
+<section id="workforce">
+  <div class="wrap">
+    <div class="lbl">Our People</div>
+    <h2 class="h2">Skilled Workforce Structure</h2>
+    <p class="lead">A reliable mix of management, technical, and support personnel — ready to deploy anywhere in the region.</p>
+    <div class="wfg fi">
+      <div class="wfc"><div class="wfh m">Management</div><div class="wfb"><div class="wfi"><div class="wd wd1"></div>Project Managers</div><div class="wfi"><div class="wd wd1"></div>Engineers</div><div class="wfi"><div class="wd wd1"></div>QA / QC</div><div class="wfi"><div class="wd wd1"></div>Planning Crew</div></div></div>
+      <div class="wfc"><div class="wfh t">Technical</div><div class="wfb"><div class="wfi"><div class="wd wd2"></div>Technicians</div><div class="wfi"><div class="wd wd2"></div>Welders</div><div class="wfi"><div class="wd wd2"></div>Certified Operators</div></div></div>
+      <div class="wfc"><div class="wfh s">Support</div><div class="wfb"><div class="wfi"><div class="wd wd3"></div>General Labor</div><div class="wfi"><div class="wd wd3"></div>Construction Helpers</div><div class="wfi"><div class="wd wd3"></div>Material Handlers</div><div class="wfi"><div class="wd wd3"></div>Site Cleaners</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUALITY -->
+<section id="quality">
+  <div class="wrap">
+    <div class="lbl">Quality &amp; Standards</div>
+    <h2 class="h2 h2w">Certified. Traceable. Compliant.</h2>
+    <p class="lead leadw">Every product and service delivered to the highest international standards.</p>
+    <div class="qg fi">
+      <div><div class="qlbl2">Standards We Meet</div><div class="stds"><div class="sr"><div class="sc">API</div><div class="si"><div class="sn2">American Petroleum Institute</div><div class="ss">Oil &amp; gas valves, pumps, seals</div></div></div><div class="sr"><div class="sc">ANSI</div><div class="si"><div class="sn2">American National Standards</div><div class="ss">Dimensional &amp; material standards</div></div></div><div class="sr"><div class="sc">ASME</div><div class="si"><div class="sn2">American Society Mech. Eng.</div><div class="ss">Pressure vessels &amp; piping</div></div></div><div class="sr"><div class="sc" style="font-size:.82rem">BS</div><div class="si"><div class="sn2">British Standards Institution</div><div class="ss">UK &amp; Commonwealth projects</div></div></div><div class="sr"><div class="sc">DIN</div><div class="si"><div class="sn2">German Institute for Standards</div><div class="ss">European project requirements</div></div></div><div class="sr"><div class="sc" style="font-size:.82rem">EN</div><div class="si"><div class="sn2">European Norms</div><div class="ss">EU compliance &amp; CE marking</div></div></div></div></div>
+      <div><div class="qlbl2">Quality Commitments</div><div class="commits"><div class="cm"><div class="cd"></div><div><div class="ct">100% In-House Production</div><div class="cx">Full traceability from raw material to dispatch.</div></div></div><div class="cm"><div class="cd"></div><div><div class="ct">Rigorous Testing Protocols</div><div class="cx">Hydrostatic, pneumatic and functional testing on every unit.</div></div></div><div class="cm"><div class="cd"></div><div><div class="ct">Full Material Traceability</div><div class="cx">Mill certificates and material test reports on request.</div></div></div><div class="cm"><div class="cd"></div><div><div class="ct">Third-Party Inspection</div><div class="cx">Accommodating client-nominated inspection agencies.</div></div></div><div class="cm"><div class="cd"></div><div><div class="ct">Documented Lead Times</div><div class="cx">Confirmed delivery schedules with proactive updates.</div></div></div><div class="cm"><div class="cd"></div><div><div class="ct">Warranty on All Products</div><div class="cx">Written warranty on every supply with rapid response SLA.</div></div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GLOBAL -->
+<section id="global">
+  <div class="wrap">
+    <div class="lbl">Global Presence</div>
+    <h2 class="h2">3 Countries · 6+ Nations Served</h2>
+    <p class="lead">Headquartered in Saudi Arabia with manufacturing in India and regional sales in the UAE.</p>
+    <div class="ofg fi">
+      <div class="ofc"><div class="ofh ksa"><div class="offl">🇸🇦</div><div class="ofn">Saudi Arabia</div></div><div class="ofb"><div class="ofa">Al Fayha, Fanateer<br>Eastern Province, KSA</div><div class="ofr">Headquarters &amp; Operations · +966 53 035 7979</div></div></div>
+      <div class="ofc"><div class="ofh ind"><div class="offl">🇮🇳</div><div class="ofn">India</div></div><div class="ofb"><div class="ofa">Deshai Towers, Trivandrum<br>Kerala, India</div><div class="ofr">Manufacturing Hub · +91 808 970 7979</div></div></div>
+      <div class="ofc"><div class="ofh uae"><div class="offl">🇦🇪</div><div class="ofn">UAE</div></div><div class="ofb"><div class="ofa">Green House, Bur Dubai<br>Dubai, UAE</div><div class="ofr">Regional Sales Office · +971 56 467 2349</div></div></div>
+    </div>
+    <div class="also fi"><strong>Also Active In:</strong>&nbsp; 🇬🇧 United Kingdom &nbsp;·&nbsp; 🇰🇷 South Korea &nbsp;·&nbsp; 🇨🇳 China</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="cg">
+      <div>
+        <div class="lbl">Get In Touch</div>
+        <h2 class="h2 h2w" style="margin-bottom:1rem;">Let's Build Something Together</h2>
+        <p style="font-size:.92rem;color:rgba(255,255,255,.42);line-height:1.8;margin-bottom:2.5rem;">Our team is ready to discuss your project, provide a quote, or arrange a site visit. Connect with us across three countries — we're here to help, anytime.</p>
+        <div class="ci">
+          <div class="cit"><div class="cion">🌐</div><div><div class="cl">Website</div><div class="cv"><a href="https://www.rigoracompany.com" target="_blank">www.rigoracompany.com</a></div></div></div>
+          <div class="cit"><div class="cion">✉️</div><div><div class="cl">Email</div><div class="cv"><a href="mailto:info@rigoracompany.com">info@rigoracompany.com</a></div></div></div>
+          <div class="cit"><div class="cion">🇸🇦</div><div><div class="cl">Saudi Arabia</div><div class="cv"><a href="tel:+966530357979">+966 53 035 7979</a></div></div></div>
+          <div class="cit"><div class="cion">🇦🇪</div><div><div class="cl">UAE / Dubai</div><div class="cv"><a href="tel:+971564672349">+971 56 467 2349</a></div></div></div>
+          <div class="cit"><div class="cion">🇮🇳</div><div><div class="cl">India</div><div class="cv"><a href="tel:+918089707979">+91 808 970 7979</a></div></div></div>
+        </div>
+      </div>
+      <div class="cf">
+        <div class="cr"><div class="cgrp"><label>Full Name</label><input type="text" placeholder="Your name"></div><div class="cgrp"><label>Company</label><input type="text" placeholder="Your company"></div></div>
+        <div class="cr"><div class="cgrp"><label>Email</label><input type="email" placeholder="your@email.com"></div><div class="cgrp"><label>Phone</label><input type="tel" placeholder="+1 000 000 0000"></div></div>
+        <div class="cgrp"><label>Service / Product Interest</label><select><option value="" disabled selected>Select a category</option><option>Heavy Equipment Rental</option><option>Technical Support Services</option><option>Construction &amp; Maintenance</option><option>Plant Maintenance Services</option><option>Industrial &amp; Material Trading</option><option>Steel Structure Fabrication</option><option>Pumps &amp; Valves Supply</option><option>Valves (Fluid Management)</option><option>Pumps (Fluid Management)</option><option>Mechanical Seals</option><option>LPG Solutions</option><option>General Enquiry</option></select></div>
+        <div class="cgrp"><label>Message</label><textarea placeholder="Describe your project or requirements..."></textarea></div>
+        <button class="bp" style="width:100%;padding:1rem;font-size:1rem;" onclick="submitForm(event)">Send Enquiry →</button>
+        <p class="cnote">We typically respond within 24 hours across all offices.</p>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="fb">RIG<em>O</em>RA</div>
+    <div class="fc">© 2025 Rigora. All rights reserved. Where Industry Finds Solutions.</div>
+    <div class="fl"><a href="#about">About</a><a href="#services-overview">Services</a><a href="#fluid">Products</a><a href="#global">Global</a><a href="#contact">Contact</a></div>
+  </footer>
+</section>
+
+<script>
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',window.scrollY>30));
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')}),{threshold:.1});
+document.querySelectorAll('.fi').forEach(el=>io.observe(el));
+
+let activeDetail=null;
+function showDetail(id){
+  const p=document.getElementById('detail-'+id);
+  if(activeDetail===id){p.classList.remove('active');activeDetail=null;return;}
+  document.querySelectorAll('.svc-detail').forEach(x=>x.classList.remove('active'));
+  p.classList.add('active');activeDetail=id;
+  setTimeout(()=>p.scrollIntoView({behavior:'smooth',block:'start'}),50);
+}
+
+function showFTab(id,btn){
+  document.querySelectorAll('.fpanel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.ftab').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');btn.classList.add('active');
+}
+
+function submitForm(e){
+  e.preventDefault();const b=e.target;
+  b.textContent='✓ Enquiry Sent — We\'ll respond within 24 hours';
+  b.style.background='#1D6E6E';b.disabled=true;
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-68,behavior:'smooth'});}
+  });
+});
+</script>
+</body>
+</html>
